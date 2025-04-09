@@ -52,7 +52,7 @@ const defaultVisibleFields = [
   "Strung Weight (oz)", "Balance (pts HL)", "Swingweight", "Stiffness", "Grip Type", "String Mains", "String Crosses"
 ];
 
-fetch('data/rackets.json?' + Date.now())
+fetch('./data/rackets.json?' + Date.now())
   .then(res => res.json())
   .then(json => {
     data = json;
