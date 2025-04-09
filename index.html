@@ -21,6 +21,16 @@
       z-index: 10;
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P5PZEJTCM6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P5PZEJTCM6');
+  </script>
+
 </head>
 <body class="bg-zinc-900 text-zinc-100 font-sans min-h-screen">
 
@@ -76,6 +86,25 @@
         <tbody id="table-body"></tbody>
       </table>
     </div>
+
+    <div class="flex justify-between items-center mt-4 text-sm text-zinc-300">
+      <div class="flex items-center gap-2">
+        <label for="rows-per-page" class="text-sm">Rows per page:</label>
+        <select id="rows-per-page" class="bg-zinc-800 text-white border border-zinc-600 rounded p-1">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="prev-page" class="px-3 py-1 bg-zinc-700 text-white rounded hover:bg-zinc-600">« Prev</button>
+        <span id="page-info" class="text-sm"></span>
+        <button id="next-page" class="px-3 py-1 bg-zinc-700 text-white rounded hover:bg-zinc-600">Next »</button>
+      </div>
+    </div>
+    
+    
 
     <!-- Bottom-right Export Button -->
     <div class="flex justify-end items-center mt-4">

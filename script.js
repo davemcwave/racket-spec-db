@@ -4,9 +4,14 @@ const fieldToggles = document.getElementById('field-toggles');
 const globalFilter = document.getElementById('global-filter');
 let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
+
 globalFilter.focus();
 
 let data = [];
+let currentPage = 1;
+let rowsPerPage = parseInt(localStorage.getItem("rowsPerPage") || "10");
+let filteredRows = [];
+
 let visibleFields = new Set();
 
 const searchKeyAliases = {
@@ -195,8 +200,8 @@ fetch('./data/rackets.json?' + Date.now())
     
 
     
-    
-    
+    document.getElementById("rows-per-page").value = rowsPerPage;
+
     
 
     renderTable(applyFilter());
@@ -205,11 +210,15 @@ fetch('./data/rackets.json?' + Date.now())
 
 function applyFilter() {
   const input = globalFilter.value.trim().toLowerCase();
-  if (!input) return data;
+  if (!input) {
+    filteredRows = data;
+    currentPage = 1;
+    return filteredRows;
+  }
 
   const tokens = input.match(/!?[\w\s]+[><=~]"[^"]+"|!?[\w\s]+[><=~][^\s"]+|\S+/g) || [];
 
-  return data.filter(row => {
+  filteredRows = data.filter(row => {
     return tokens.every(token => {
       let negate = false;
       if (token.startsWith('!')) {
@@ -249,12 +258,21 @@ function applyFilter() {
       }
     });
   });
+
+  currentPage = 1;
+  return filteredRows;
 }
+  
 
 function renderTable(rows) {
   const fields = Array.from(visibleFields);
-  let currentSort = { key: null, dir: 'asc' };
 
+  // Pagination logic
+  const start = (currentPage - 1) * rowsPerPage;
+  const end = start + rowsPerPage;
+  const pageRows = rows.slice(start, end);
+
+  // Render headers
   tableHead.innerHTML = fields.map((key) => {
     const isSticky = key === "Racket Name";
     const stickyClass = isSticky ? 'sticky-col bg-lime-800' : '';
@@ -264,7 +282,8 @@ function renderTable(rows) {
     </th>`;
   }).join('');
 
-  tableBody.innerHTML = rows.map(row => {
+  // Render rows for current page
+  tableBody.innerHTML = pageRows.map(row => {
     return `<tr class="border-t border-zinc-700 hover:bg-zinc-700">` +
       fields.map(key => {
         const isSticky = key === "Racket Name";
@@ -273,7 +292,39 @@ function renderTable(rows) {
         return `<td class="p-2 ${stickyClass}">${val}</td>`;
       }).join('') + `</tr>`;
   }).join('');
+
+  // Update pagination footer
+  const totalPages = Math.ceil(rows.length / rowsPerPage);
+  document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
+  document.getElementById("prev-page").disabled = currentPage <= 1;
+  document.getElementById("next-page").disabled = currentPage >= totalPages;
 }
+
+// Hook up pagination buttons
+document.getElementById('prev-page').addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderTable(filteredRows);
+  }
+});
+
+document.getElementById('next-page').addEventListener('click', () => {
+  const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderTable(filteredRows);
+  }
+});
+
+// Rows per page selector
+document.getElementById('rows-per-page').addEventListener('change', (e) => {
+  rowsPerPage = parseInt(e.target.value);
+  localStorage.setItem('rowsPerPage', rowsPerPage);
+  currentPage = 1;
+  renderTable(filteredRows);
+});
+
+
 
 function updateURLParams() {
   const currentSearch = globalFilter.value.trim();
