@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="tennis-sal-green-32x32.png" type="image/png">
+  <title>Racket Spec Database</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script.js" defer></script>
+  <style>
+    thead tr {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background-color: #365314;
+    }
+    th.sticky-col, td.sticky-col {
+      position: sticky;
+      left: 0;
+      background-color: #2a2a2d;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body class="bg-zinc-900 text-zinc-100 font-sans min-h-screen">
+
+  <nav class="bg-lime-900 text-white px-6 py-3 flex items-center justify-between shadow-md sticky top-0 z-50">
+    <!-- Left side: Logo and title -->
+    <div class="flex items-center space-x-2 text-2xl font-semibold tracking-tight">
+      <img src="tennis-sal-white.png" alt="Tennis Ball" class="w-12 h-12 inline align-middle" />
+      <span>Racket Spec DB</span>
+    </div>
+  
+    <!-- Right side: About and Donate links -->
+    <div class="space-x-6 text-md font-medium">
+      <a href="#about" class="hover:underline">About</a>
+      <a href="#donate" class="hover:underline">Donate</a>
+    </div>
+  </nav>
+  
+  <div class="px-6 py-8">
+
+    <!-- Field Selector Dropdown -->
+    <details id="column-toggles" class="mb-4 group">
+      <summary class="flex items-center flex-wrap gap-2 cursor-pointer text-lime-400 mb-2">
+        <span class="mr-1 font-semibold underline underline-offset-2 hover:text-lime-300">Customize Columns</span>
+        <span class="transition-transform duration-200 group-open:rotate-90">▶</span>
+        <button id="reset-columns" class="ml-4 px-3 py-1 text-sm bg-zinc-700 text-white rounded hover:bg-zinc-600">
+          Reset to Default
+        </button>
+        <button id="select-all-columns" class="px-3 py-1 text-sm bg-zinc-700 text-white rounded hover:bg-zinc-600">
+          Select All
+        </button>
+        <button id="unselect-all-columns" class="px-3 py-1 text-sm bg-zinc-700 text-white rounded hover:bg-zinc-600">
+          Unselect All
+        </button>
+      </summary>
+      
+    
+      <div id="field-toggles" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 text-sm mt-2"></div>
+    </details>
+    
+    
+    
+
+    <!-- Global Search -->
+    <input id="global-filter" type="text" placeholder="Search any field..."
+           class="mb-4 w-full p-2 border border-zinc-600 rounded bg-zinc-800 text-zinc-100 placeholder-zinc-400" />
+
+    <!-- Data Table -->
+    <div class="w-full overflow-x-auto">
+      <table class="w-full min-w-[1600px] border border-zinc-700 text-sm bg-zinc-800">
+        <thead>
+          <tr id="table-head"></tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    <!-- Bottom-right Export Button -->
+    <div class="flex justify-end items-center mt-4">
+      <button id="export-btn" class="px-4 py-2 bg-zinc-700 text-white rounded hover:bg-zinc-600">
+        Export to CSV
+      </button>
+    </div>
+
+  </div>
+</body>
+</html>
