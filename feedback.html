@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="tennis-sal-green-32x32.png" type="image/png">
+  <title>Feedback &amp; Requests – Racket Spec DB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    thead tr {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background-color: #365314;
+    }
+    th.sticky-col, td.sticky-col {
+      position: sticky;
+      left: 0;
+      background-color: #2a2a2d;
+      z-index: 10;
+    }
+  </style>
+  <!-- Google Tag Manager (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XN4266CC9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P5PZEJTCM6');
+  </script>
+</head>
+<body class="bg-zinc-900 text-zinc-100 font-sans min-h-screen">
+  <!-- Navbar, same as index.html -->
+  <nav class="bg-lime-900 text-white px-6 py-3 flex items-center justify-between shadow-md sticky top-0 z-50">
+    <a href="/" class="flex items-center space-x-2 text-2xl font-semibold tracking-tight">
+      <img src="tennis-sal-white.png" alt="Tennis Ball" class="w-12 h-12 inline align-middle" />
+      <span>Racket Spec DB</span>
+    </a>
+    <div class="space-x-6 text-md font-medium">
+      <a href="about.html" class="hover:underline">About</a>
+      <a href="https://www.ko-fi.com/davemcwave" class="hover:underline">Donate</a>
+      <a href="feedback.html" class="hover:underline">Feedback</a>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <div class="px-6 py-8">
+    <div class="max-w-2xl mx-auto bg-zinc-800 p-8 rounded shadow-md">
+      <h1 class="text-3xl font-bold mb-6 text-center">Feedback, Bug Report, or Feature Request</h1>
+      <form action="https://formspree.io/f/xoveywoa" method="POST" class="space-y-4">
+        <!-- Replace "yourFormID" with your actual Formspree form ID -->
+        <div>
+          <label for="name" class="block text-lg font-medium mb-1">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" class="w-full p-2 border border-zinc-600 rounded bg-zinc-700 text-zinc-100" required>
+        </div>
+        <div>
+          <label for="email" class="block text-lg font-medium mb-1">Email</label>
+          <input type="email" id="email" name="_replyto" placeholder="your.email@example.com" class="w-full p-2 border border-zinc-600 rounded bg-zinc-700 text-zinc-100" required>
+        </div>
+        <div>
+          <label for="type" class="block text-lg font-medium mb-1">Submission Type</label>
+          <select id="type" name="type" class="w-full p-2 border border-zinc-600 rounded bg-zinc-700 text-zinc-100">
+            <option value="feedback">Feedback</option>
+            <option value="bug">Bug Report</option>
+            <option value="request">Feature Request</option>
+          </select>
+        </div>
+        <div>
+          <label for="subject" class="block text-lg font-medium mb-1">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Brief description" class="w-full p-2 border border-zinc-600 rounded bg-zinc-700 text-zinc-100" required>
+        </div>
+        <div>
+          <label for="message" class="block text-lg font-medium mb-1">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Your feedback, bug report, or request details..." class="w-full p-2 border border-zinc-600 rounded bg-zinc-700 text-zinc-100" required></textarea>
+        </div>
+        <div>
+          <button type="submit" class="w-full py-3 bg-lime-700 text-white font-semibold rounded hover:bg-lime-600 transition-colors duration-200">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
