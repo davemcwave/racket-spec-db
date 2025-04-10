@@ -332,3 +332,11 @@ modalReset.addEventListener('click', () => {
   updateURLParams();
   modal.classList.add('hidden');
 });
+
+// Subscribe modal toggle
+document.getElementById("subscribe-btn")?.addEventListener("click", () => {
+  document.getElementById("subscribe-modal")?.classList.remove("hidden");
+});
+document.getElementById("close-subscribe-modal")?.addEventListener("click", () => {
+  document.getElementById("subscribe-modal")?.classList.add("hidden");
+});
