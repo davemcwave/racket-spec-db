@@ -280,7 +280,7 @@ function updateURLParams() {
   window.history.replaceState({}, '', newURL);
 }
 
-function exportToCSV() {
+document.getElementById('export-btn').addEventListener('click', (e) => {
   const rows = applyFilter();
   const fields = [...visibleFields];
   const csv = [fields.join(',')].concat(
@@ -294,4 +294,4 @@ function exportToCSV() {
   a.download = 'rackets.csv';
   a.click();
   URL.revokeObjectURL(url);
-}
+});
