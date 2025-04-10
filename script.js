@@ -295,3 +295,40 @@ document.getElementById('export-btn').addEventListener('click', (e) => {
   a.click();
   URL.revokeObjectURL(url);
 });
+
+
+// Customize Columns Modal logic
+const modal = document.getElementById('customize-modal');
+const modalToggles = document.getElementById('modal-field-toggles');
+const modalSummary = document.getElementById('customize-columns-summary');
+const modalDone = document.getElementById('modal-done-columns');
+const modalReset = document.getElementById('modal-reset-columns');
+
+modalSummary.addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  // Re-render toggles
+  modalToggles.innerHTML = Object.keys(data[0]).sort().map(key => {
+    const checked = visibleFields.has(key) ? 'checked' : '';
+    return `<label class="block"><input type="checkbox" class="modal-toggle-field mr-2" value="${key}" ${checked}/> ${key}</label>`;
+  }).join('');
+  modal.classList.remove('hidden');
+});
+
+modalDone.addEventListener('click', () => {
+  document.querySelectorAll('.modal-toggle-field').forEach(input => {
+    input.checked ? visibleFields.add(input.value) : visibleFields.delete(input.value);
+  });
+  localStorage.setItem('visibleFields', JSON.stringify([...visibleFields]));
+  renderTable(applyFilter());
+  updateURLParams();
+  modal.classList.add('hidden');
+});
+
+modalReset.addEventListener('click', () => {
+  visibleFields = new Set(defaultVisibleFields);
+  localStorage.setItem('visibleFields', JSON.stringify([...visibleFields]));
+  renderTable(applyFilter());
+  updateURLParams();
+  modal.classList.add('hidden');
+});

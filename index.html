@@ -31,7 +31,8 @@
   </script>
 </head>
 <body class="bg-zinc-900 text-zinc-100 font-sans min-h-screen">
-  <nav class="bg-lime-900 text-white px-6 py-3 flex items-center justify-between shadow-md sticky top-0 z-50">
+  <nav class="bg-lime-900 text-white px-6 py-3 shadow-md sticky top-0 z-50">
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0">
     <!-- Left Side: Logo & Title -->
     <a href="/" class="flex items-center space-x-2 text-2xl font-semibold tracking-tight">
       <img src="tennis-sal-white.png" alt="Tennis Ball" class="w-12 h-12 inline align-middle" />
@@ -64,8 +65,11 @@
     </details>
   <div class="px-6 py-8">
     <!-- Field Selector Dropdown -->
+    
+  <div class="px-6 py-8">
+    <!-- Field Selector Dropdown -->
     <details id="column-toggles" class="mb-4 group">
-      <summary class="flex items-center flex-wrap gap-2 cursor-pointer text-lime-400 mb-2">
+      <summary id="customize-columns-summary" class="flex items-center flex-wrap gap-2 cursor-pointer text-lime-400 mb-2">
         <span class="mr-1 font-semibold underline underline-offset-2 hover:text-lime-300">Customize Columns</span>
         <span class="transition-transform duration-200 group-open:rotate-90">▶</span>
         <button id="reset-columns" class="ml-4 px-3 py-1 text-sm bg-zinc-700 text-white rounded hover:bg-zinc-600">
@@ -78,17 +82,29 @@
           Unselect All
         </button>
       </summary>
-      <div id="field-toggles" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 text-sm mt-2"></div>
+      <div id="field-toggles" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-sm mt-2"></div>
     </details>
     
     <!-- Global Search -->
-    <input id="global-filter" type="text" placeholder="Search any field..."
+    
+
+<div id="customize-modal" class="hidden fixed inset-0 bg-zinc-900/90 z-50 p-4 overflow-y-auto">
+  <div class="bg-zinc-800 max-w-sm mx-auto p-4 rounded shadow-lg">
+    <h2 class="text-xl font-bold mb-4">Customize Columns</h2>
+    <div id="modal-field-toggles" class="space-y-2 mb-4"></div>
+    <div class="flex justify-between">
+      <button id="modal-reset-columns" class="px-4 py-2 bg-zinc-700 text-white rounded hover:bg-zinc-600">Reset</button>
+      <button id="modal-done-columns" class="px-4 py-2 bg-lime-700 text-white rounded hover:bg-lime-600">Done</button>
+    </div>
+  </div>
+</div>
+<input id="global-filter" type="text" placeholder="Search any field..."
            class="mb-4 w-full p-2 border border-zinc-600 rounded bg-zinc-800 text-zinc-100 placeholder-zinc-400" />
     
 
     <!-- Data Table -->
-    <div class="w-full overflow-x-auto">
-      <table class="w-full min-w-[1600px] border border-zinc-700 text-sm bg-zinc-800">
+    <div class="w-full overflow-x-auto rounded border border-zinc-700">
+      <table class="min-w-full text-sm bg-zinc-800">
         <thead>
           <tr id="table-head"></tr>
         </thead>
@@ -116,7 +132,7 @@
     
     <!-- Export Button -->
     <div class="flex justify-end items-center mt-4">
-      <button id="export-btn" class="px-4 py-2 bg-zinc-700 text-white rounded hover:bg-zinc-600">
+      <button id="export-btn" class="px-4 py-3 text-base bg-zinc-700 text-white rounded hover:bg-zinc-600 w-full sm:w-auto">
         Export to CSV
       </button>
     </div>
