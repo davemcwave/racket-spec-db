@@ -27,31 +27,42 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-P5PZEJTCM6');
   </script>
-
 </head>
 <body class="bg-zinc-900 text-zinc-100 font-sans min-h-screen">
-
   <nav class="bg-lime-900 text-white px-6 py-3 flex items-center justify-between shadow-md sticky top-0 z-50">
-    <!-- Left side: Logo and title -->
+    <!-- Left Side: Logo & Title -->
     <a href="/" class="flex items-center space-x-2 text-2xl font-semibold tracking-tight">
       <img src="tennis-sal-white.png" alt="Tennis Ball" class="w-12 h-12 inline align-middle" />
       <span>Racket Spec DB</span>
     </a>
-    
-  
-    <!-- Right side: About and Donate links -->
+    <!-- Right Side: Navigation -->
     <div class="space-x-6 text-md font-medium">
-      <a href="about.html" class="hover:underline">About</a>
+      <a href="#about" class="hover:underline">About</a>
       <a href="https://www.ko-fi.com/davemcwave" class="hover:underline">Donate</a>
       <a href="feedback.html" class="hover:underline">Feedback</a>
     </div>
   </nav>
-  
-  <div class="px-6 py-8">
 
+  
+    <!-- How To Use Widget -->
+    <details class="bg-zinc-800 p-4 rounded mb-4">
+      <summary class="cursor-pointer font-bold">How to Use the Tool</summary>
+      <p class="mt-2">
+        Enter your search query in the box below. You can search by any field in the database. Hover over the field info icon to get its search name.
+      </p>
+      <p class="mt-2">
+        Use operators like <code>=</code> for exact matches, <code>&gt;</code>/<code>&lt;</code> for numerical comparisons, and <code>~</code> for partial or approximate text matches.
+      </p>
+      <p class="mt-2">
+        For example, try: <code>head_size_in=98</code> or <code>swingweight&gt;320</code>.
+      </p>
+      <p class="mt-2">
+        To customize visible columns, use the "Customize Columns" dropdown below.
+      </p>
+    </details>
+  <div class="px-6 py-8">
     <!-- Field Selector Dropdown -->
     <details id="column-toggles" class="mb-4 group">
       <summary class="flex items-center flex-wrap gap-2 cursor-pointer text-lime-400 mb-2">
@@ -67,17 +78,13 @@
           Unselect All
         </button>
       </summary>
-      
-    
       <div id="field-toggles" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 text-sm mt-2"></div>
     </details>
     
-    
-    
-
     <!-- Global Search -->
     <input id="global-filter" type="text" placeholder="Search any field..."
            class="mb-4 w-full p-2 border border-zinc-600 rounded bg-zinc-800 text-zinc-100 placeholder-zinc-400" />
+    
 
     <!-- Data Table -->
     <div class="w-full overflow-x-auto">
@@ -89,6 +96,7 @@
       </table>
     </div>
 
+    <!-- Pagination and Export Controls -->
     <div class="flex justify-between items-center mt-4 text-sm text-zinc-300">
       <div class="flex items-center gap-2">
         <label for="rows-per-page" class="text-sm">Rows per page:</label>
@@ -106,15 +114,12 @@
       </div>
     </div>
     
-    
-
-    <!-- Bottom-right Export Button -->
+    <!-- Export Button -->
     <div class="flex justify-end items-center mt-4">
       <button id="export-btn" class="px-4 py-2 bg-zinc-700 text-white rounded hover:bg-zinc-600">
         Export to CSV
       </button>
     </div>
-
   </div>
 </body>
 </html>
