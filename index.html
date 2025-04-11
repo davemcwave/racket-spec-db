@@ -8,20 +8,6 @@
 <title>Racket Spec Database</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script defer="" src="script.js"></script>
-<style>
-    thead tr {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background-color: #365314;
-    }
-    th.sticky-col, td.sticky-col {
-      position: sticky;
-      left: 0;
-      background-color: #2a2a2d;
-      z-index: 10;
-    }
-  </style>
 <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-3XN4266CC9"></script>
 <script>
@@ -48,6 +34,54 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
+</style><style>
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #365314;
+  z-index: 20;
+}
+@media (max-width: 640px) {
+  thead th {
+    font-size: 0.75rem;
+  }
+  td[data-field="racket_name"], th[data-field="racket_name"] {
+    max-width: 12rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+</style><style>
+/* Webkit scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #52525b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #52525b #18181b;
+}
+</style><style>
+th.sticky-col, td.sticky-col {
+  position: sticky;
+  left: 0;
+  background-color: #2a2a2d;
+  z-index: 20;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+</style><style>
+th.sticky-col:first-child {
+  z-index: 30;
 }
 </style></head>
 <body class="bg-zinc-900 text-zinc-100 font-sans min-h-screen">
@@ -127,7 +161,7 @@
 </div>
 <input class="mb-4 w-full p-2 border border-zinc-600 rounded bg-zinc-800 text-zinc-100 placeholder-zinc-400" id="global-filter" placeholder="Search any field..." type="text"/>
 <!-- Data Table -->
-<div class="w-full overflow-x-auto rounded border border-zinc-700">
+<div class="overflow-x-auto overflow-y-auto max-h-[80vh] rounded border border-zinc-700 w-full relative">
 <table class="text-sm bg-zinc-800 w-full table-auto">
 <thead>
 <tr id="table-head"></tr>
@@ -175,6 +209,16 @@
 <script>
 document.getElementById("subscribe-btn-mobile")?.addEventListener("click", () => {
   document.getElementById("subscribe-modal")?.classList.remove("hidden");
+});
+</script><script>
+document.addEventListener("DOMContentLoaded", () => {
+  const rows = document.querySelectorAll("#table-body tr");
+  rows.forEach(row => {
+    const firstCell = row.querySelector("td");
+    if (firstCell) {
+      firstCell.classList.add("sticky-col");
+    }
+  });
 });
 </script></body>
 </html>
