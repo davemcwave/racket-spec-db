@@ -220,5 +220,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+</script><script>
+document.querySelectorAll('.tooltip-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const tooltip = button.nextElementSibling;
+    tooltip.classList.toggle('hidden');
+    if (!tooltip.classList.contains('hidden')) {
+      setTimeout(() => tooltip.classList.add('hidden'), 3000);
+    }
+  });
+});
 </script></body>
 </html>
