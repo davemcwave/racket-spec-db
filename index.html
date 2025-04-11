@@ -30,7 +30,17 @@
     gtag('js', new Date());
     gtag('config', 'G-P5PZEJTCM6');
   </script>
-</head>
+<style>
+@media (max-width: 640px) {
+  table td, table th {
+    padding: 0.25rem !important;
+    font-size: 0.75rem !important;
+  }
+  #rows-per-page {
+    padding: 0.25rem;
+  }
+}
+</style></head>
 <body class="bg-zinc-900 text-zinc-100 font-sans min-h-screen">
 <nav class="bg-lime-900 text-white px-6 py-3 shadow-md sticky top-0 z-50">
 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0">
@@ -40,14 +50,27 @@
 <span>Racket Spec DB</span>
 </a>
 <!-- Right Side: Navigation -->
-<div class="space-x-6 text-md font-medium">
-<a class="hover:underline" href="about.html">About</a>
-<a class="hover:underline" href="https://www.ko-fi.com/davemcwave">Donate</a>
-<a class="hover:underline" href="feedback.html">Feedback</a>
-<button class="hover:underline" id="subscribe-btn">Subscribe</button></div>
+<div class="hidden sm:flex space-x-6 text-md font-medium">
+<a href="about.html">About</a>
+<a href="https://www.ko-fi.com/davemcwave">Donate</a>
+<a href="feedback.html">Feedback</a>
+<button id="subscribe-btn">Subscribe</button>
+</div>
+<!-- Mobile dropdown -->
+<div class="sm:hidden relative">
+<details class="cursor-pointer">
+<summary class="text-md font-medium">Menu ▾</summary>
+<div class="absolute bg-lime-900 mt-2 p-2 rounded shadow-md text-sm space-y-1 z-50">
+<a class="block hover:underline" href="about.html">About</a>
+<a class="block hover:underline" href="https://www.ko-fi.com/davemcwave">Donate</a>
+<a class="block hover:underline" href="feedback.html">Feedback</a>
+<button class="block hover:underline" id="subscribe-btn-mobile">Subscribe</button>
+</div>
+</details>
+</div>
 </div></nav>
 <!-- How To Use Widget -->
-<details class="bg-zinc-800 p-4 rounded mb-4">
+<details class="bg-zinc-800 p-4 rounded mb-2 mt-1">
 <summary class="cursor-pointer font-bold">How to Use the Tool</summary>
 <p class="mt-2">
         Enter your search query in the box below. You can search by any field in the database. Hover over the field info icon to get its search name.
@@ -62,11 +85,11 @@
         To customize visible columns, use the "Customize Columns" dropdown below.
       </p>
 </details>
-<div class="px-6 py-8">
+<div class="px-2 sm:px-6 py-4">
 <!-- Field Selector Dropdown -->
-<div class="px-6 py-8">
+<div class="px-2 sm:px-6 py-4">
 <!-- Field Selector Dropdown -->
-<details class="mb-4 group" id="column-toggles">
+<details class="group mb-2 mb-1" id="column-toggles">
 <summary class="flex items-center flex-wrap gap-2 cursor-pointer text-lime-400 mb-2" id="customize-columns-summary">
 <span class="mr-1 font-semibold underline underline-offset-2 hover:text-lime-300">Customize Columns</span>
 <span class="transition-transform duration-200 group-open:rotate-90">▶</span>
@@ -96,7 +119,7 @@
 <input class="mb-4 w-full p-2 border border-zinc-600 rounded bg-zinc-800 text-zinc-100 placeholder-zinc-400" id="global-filter" placeholder="Search any field..." type="text"/>
 <!-- Data Table -->
 <div class="w-full overflow-x-auto rounded border border-zinc-700">
-<table class="min-w-full text-sm bg-zinc-800">
+<table class="min-w-full text-sm bg-zinc-800 whitespace-nowrap">
 <thead>
 <tr id="table-head"></tr>
 </thead>
@@ -140,5 +163,9 @@
 </form>
 </div>
 </div>
-</body>
+<script>
+document.getElementById("subscribe-btn-mobile")?.addEventListener("click", () => {
+  document.getElementById("subscribe-modal")?.classList.remove("hidden");
+});
+</script></body>
 </html>
