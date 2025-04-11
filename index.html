@@ -40,6 +40,15 @@
     padding: 0.25rem;
   }
 }
+</style><style>
+@media (max-width: 640px) {
+  td[data-field="racket_name"], th[data-field="racket_name"] {
+    max-width: 12rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 </style></head>
 <body class="bg-zinc-900 text-zinc-100 font-sans min-h-screen">
 <nav class="bg-lime-900 text-white px-6 py-3 shadow-md sticky top-0 z-50">
@@ -119,7 +128,7 @@
 <input class="mb-4 w-full p-2 border border-zinc-600 rounded bg-zinc-800 text-zinc-100 placeholder-zinc-400" id="global-filter" placeholder="Search any field..." type="text"/>
 <!-- Data Table -->
 <div class="w-full overflow-x-auto rounded border border-zinc-700">
-<table class="min-w-full text-sm bg-zinc-800 whitespace-nowrap">
+<table class="text-sm bg-zinc-800 w-full table-auto">
 <thead>
 <tr id="table-head"></tr>
 </thead>
