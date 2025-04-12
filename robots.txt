@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://racketspecsdb.info/sitemap.xml
